@@ -13,12 +13,10 @@ class Track extends React.Component {
 	}
 	
 	addTrack() {
-		console.log('Track.addTrack called');
 		this.props.onAdd(this.props.track);
 	}
 	
 	removeTrack() {
-		console.log('Track.removeTrack called');
 		this.props.onRemove(this.props.track);
 	}
 	
@@ -29,7 +27,7 @@ class Track extends React.Component {
                   <h3>{this.props.track.name}</h3>
                   <p>{this.props.track.artist} | {this.props.track.album}</p>
                 </div>
-				{this.renderAction(this.props.track.isRemoval)}
+				{this.renderAction(this.props.isRemoval)}
 			</div>
 		)
 	}

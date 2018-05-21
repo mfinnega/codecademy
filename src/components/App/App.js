@@ -22,22 +22,16 @@ class App extends Component {
 	
 	addTrack(track) {
 		if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
-			console.log('track already exists in playlist');
 			return;
 		}
-		
-		console.log('about to setState in App.addTrack');
-		this.setState({playlistTracks: this.state.playlistTracks.push(track)});
-		//let newPlaylistTracks = this.state.playlistTracks.push(track);
-		
-		//this.setState({playlistTracks: newPlaylistTracks});
-		console.log('Just update state of playlistTracks in App');
-		console.log(this.state.playlistTracks);
+
+		this.setState(prevState => ({
+			playlistTracks: [...prevState.playlistTracks, track]
+		}));
 	}
 	
 	removeTrack(track) {
 		let filteredPlaylistTracks = this.state.playlistTracks.filter(savedTrack => savedTrack.id !== track.id);
-		console.log('about to setState in App.removeTrack');
 		this.setState({playlistTracks: filteredPlaylistTracks});
 	}
 	
@@ -52,14 +46,11 @@ class App extends Component {
 	}
 	
 	savePlaylist() {
-		console.log('in savePlaylist');
 		Spotify.savePlaylist(this.state.playlistName, this.state.playlistTracks);
 		this.setState({playlistName: "New Playlist", playlistTracks: []});
 	}
 	
   render() {
-	console.log('in App.render');
-	console.log(this.state.playlistTracks);
     return (
 		<div>
 			<h1>Ja<span className="highlight">mmm</span>ing</h1>
